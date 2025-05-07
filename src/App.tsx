@@ -3,6 +3,8 @@ import { HomePage } from './page/HomePage'
 import { Layout } from './page/Layout'
 import Doctor from './page/Doctor'
 import Pasient from './page/Pasient'
+import './index.css'
+
 
 const App = () => {
   return (
