@@ -7,7 +7,7 @@ export const Layout = () => {
   return (
     <div className='w-screen flex h-screen' >
         <MenuSIde isOpen={opens} onTogle={() => setIsOpen(e => !e)}  />
-        <div className='w-full h-full p-5' >
+        <div className='w-full h-full p-5 bg-gray-100' >
             <Outlet/>
         </div>
     </div>

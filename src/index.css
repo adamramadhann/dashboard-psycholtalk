@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+  
+.custom-table .ant-table-cell {
+    border: 1px solid gray !important;
+  }
+  
+  
+  .custom-pagination {
+    border: 1px solid  gray;
+    border-top: none; /* hilangkan border atas agar nyatu dengan table */
+    border-radius: 0 0 4px 4px; /* rounded hanya di bawah */
+    margin-top: 0px !important; /* hilangkan gap */
+    padding: 10px 0;
+  }
+  
+  
+  
+
+
