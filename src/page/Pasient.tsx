@@ -1,5 +1,6 @@
 import { Table } from 'antd'
-import React from 'react'
+import React, { MouseEventHandler, useState } from 'react'
+import ModalConfrimasi from '../components/ModalConfrimasi'
 
 interface typeTable {
   key : React.Key,
@@ -10,72 +11,6 @@ interface typeTable {
   categories : string
   avatar : string,
 }
-
-const colums = [
-  {
-    key: 'no',
-    title: 'No',
-    render: (_: any, __: any, index: number) => index + 1,
-    onCell: () => ({
-      style: { border: '1px solid gray' },
-    }),
-  },
-  {
-    key: 'avatar',
-    title: 'Avatar',
-    render: (_: any, record: typeTable) => <img src={record.avatar} alt="avatar" width={40} />,
-    onCell: () => ({
-      style: { border: '1px solid gray' },
-    }),
-  },
-  {
-    key: 'name',
-    title: 'Name',
-    dataIndex: 'name',
-    onCell: () => ({
-      style: { border: '1px solid gray' },
-    }),
-  },
-  {
-    key: 'email',
-    title: 'Email',
-    dataIndex: 'email',
-    onCell: () => ({
-      style: { border: '1px solid gray' },
-    }),
-  },
-  {
-    key: 'gender',
-    title: 'Gender',
-    dataIndex: 'gender',
-    onCell: () => ({
-      style: { border: '1px solid gray' },
-    }),
-  },
-  {
-    key: 'bio',
-    title: 'Bio',
-    dataIndex: 'bio',
-    onCell: () => ({
-      style: { border: '1px solid gray' },
-    }),
-  },
-  {
-    key: 'categories',
-    title: 'Categories',
-    dataIndex: 'categories',
-    onCell: () => ({
-      style: { border: '1px solid gray' },
-    }),
-  },
-  {
-    key : "actions",
-    title : "Actions",
-        onCell: () => ({
-      style: { border: '1px solid gray' },
-    }),
-  }
-]
 
 
 const dataPasient : typeTable[] = [
@@ -119,6 +54,87 @@ const dataPasient : typeTable[] = [
 
 const Pasient = () => {
 
+  const [isOpenModal, setIsOpenModal] = useState<boolean | false>(false)
+
+  const handleOpenModal = () => {
+    setIsOpenModal(val => !val)
+  }
+
+
+  const colums = [
+    {
+      key: 'no',
+      title: 'No',
+      render: (_: any, __: any, index: number) => index + 1,
+      onCell: () => ({
+        style: { border: '1px solid gray' },
+      }),
+    },
+    {
+      key: 'avatar',
+      title: 'Avatar',
+      render: (_: any, record: typeTable) => <img src={record.avatar} alt="avatar" width={40} />,
+      onCell: () => ({
+        style: { border: '1px solid gray' },
+      }),
+    },
+    {
+      key: 'name',
+      title: 'Name',
+      dataIndex: 'name',
+      onCell: () => ({
+        style: { border: '1px solid gray' },
+      }),
+    },
+    {
+      key: 'email',
+      title: 'Email',
+      dataIndex: 'email',
+      onCell: () => ({
+        style: { border: '1px solid gray' },
+      }),
+    },
+    {
+      key: 'gender',
+      title: 'Gender',
+      dataIndex: 'gender',
+      onCell: () => ({
+        style: { border: '1px solid gray' },
+      }),
+    },
+    {
+      key: 'bio',
+      title: 'Bio',
+      dataIndex: 'bio',
+      onCell: () => ({
+        style: { border: '1px solid gray' },
+      }),
+    },
+    {
+      key: 'categories',
+      title: 'Categories',
+      dataIndex: 'categories',
+      onCell: () => ({
+        style: { border: '1px solid gray' },
+      }),
+    },
+    {
+      key : "actions",
+      title : "Actions",
+      render : () => {
+        return (
+          <div className='w-full flex items-center gap-4' >
+            <button className='bg-blue-500 hover:bg-blue-700 text-white p-2 rounded-md' >detail</button>
+            <button onClick={handleOpenModal} className='bg-red-500 hover:bg-red-700 text-white p-2 rounded-md' >hapus</button>
+          </div>
+        )
+      },
+      onCell: () => ({
+        style: { border: '1px solid gray' },
+      }),
+    }
+  ]
+
   return (
     <div className='w-full space-y-5 h-full ' >
       <div className='float-right' >
@@ -135,6 +151,13 @@ const Pasient = () => {
           className: 'custom-pagination',
         }}
         bordered
+      />
+      <ModalConfrimasi 
+        isClose={handleOpenModal} 
+        isOpen={isOpenModal} 
+        closed='Canseled'
+        confrim='Deleted'
+        textColor='text-red-500'
       />
     </div>
   )
